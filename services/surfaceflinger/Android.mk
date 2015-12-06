@@ -93,6 +93,13 @@ else
     LOCAL_CFLAGS += -DMAX_VIRTUAL_DISPLAY_DIMENSION=0
 endif
 
+ifeq ($(strip $(BOARD_USE_LCDC_COMPOSER)),true)
+    LOCAL_CFLAGS += -DUSE_LCDC_COMPOSER
+    ifeq ($(strip $(BOARD_LCDC_COMPOSER_LANDSCAPE_ONLY)),false)
+        LOCAL_CFLAGS += -DLCDC_COMPOSER_FULL_ANGLE
+    endif
+endif
+
 LOCAL_CFLAGS += -fvisibility=hidden -Werror=format
 LOCAL_CFLAGS += -std=c++11
 
